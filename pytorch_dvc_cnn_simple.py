@@ -8,7 +8,7 @@ import torch.nn.functional as F
 import torch.optim as optim
 from datetime import datetime
 
-from pytorch_dvc_cnn import get_train_loader, get_validation_loader, get_test_loader
+from pytorch_dvc_cnn import get_train_loader_hdf5, get_validation_loader_hdf5, get_test_loader_hdf5
 from pytorch_dvc_cnn import device, train, evaluate, get_tensorboard
 
 model_file = 'dvc_simple_cnn.pt'
@@ -52,8 +52,15 @@ def train_main():
     print(model)
 
     batch_size = 25
-    train_loader = get_train_loader(batch_size)
-    validation_loader = get_validation_loader(batch_size)
+    train_loader = get_train_loader_hdf5(batch_size)
+    validation_loader = get_validation_loader_hdf5(batch_size)
+
+    # for data, target in train_loader:
+    #     print(data.shape, data.dtype)
+    #     print(target.shape, target.dtype)
+    #     print(target[0])
+    #     break
+    # return
 
     log = get_tensorboard('simple')
     epochs = 20
@@ -89,7 +96,7 @@ def test_main():
     model.load_state_dict(torch.load(model_file))
     model.to(device)
 
-    test_loader = get_test_loader(25)
+    test_loader = get_test_loader_hdf5(25)
 
     print('=========')
     print('Simple:')
@@ -99,4 +106,4 @@ def test_main():
 
 if __name__ == '__main__':
     train_main()
-    # test_main()
+    test_main()

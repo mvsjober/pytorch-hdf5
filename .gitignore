@@ -1,0 +1,5 @@
+*~
+/__pycache__
+/logs
+/dvc_simple_cnn.pt
+slurm-*.out
