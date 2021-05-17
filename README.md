@@ -12,3 +12,7 @@ Mahti.
 
 ## Training with PyTorch
 
+The file [pytorch_dvc_cnn_simple.py](pytorch_dvc_cnn_simple.py) together with
+[pytorch_dvc_cnn_simple.py](pytorch_dvc_cnn_simple.py) shows a simple CNN image
+training that uses an HDF5 dataset. The original dataset can be found from
+<https://a3s.fi/mldata/dogs-vs-cats.tar>.
