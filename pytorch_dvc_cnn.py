@@ -150,6 +150,7 @@ def get_train_loader(batch_size=25):
           len(train_dataset.classes), 'classes')
     return train_loader
 
+
 class HDF5Dataset(Dataset):
     def __init__(self, file_path, dataset_name, transform=None):
         self.file_path = file_path
@@ -176,14 +177,14 @@ class HDF5Dataset(Dataset):
 
     def _open_hdf5(self):
         self._hf = h5py.File(self.file_path, 'r')
-                    
+
     def __getitem__(self, index):
         if not hasattr(self, '_hf'):
             self._open_hdf5()
 
         assert self._idx_to_name is not None
         img_name = self._idx_to_name[index]
-        
+
         ds = self._hf[self.dataset_name][img_name]
         x = Image.open(io.BytesIO(np.array(ds)))
         y = np.array(self.classes[ds.attrs['class']])
@@ -195,7 +196,7 @@ class HDF5Dataset(Dataset):
 
         y = torch.from_numpy(y)
         return (x, y)
-        
+
 
 def get_train_loader_hdf5(batch_size=25):
     print('Train: ', end="")

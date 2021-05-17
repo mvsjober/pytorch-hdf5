@@ -16,3 +16,7 @@ The file [pytorch_dvc_cnn_simple.py](pytorch_dvc_cnn_simple.py) together with
 [pytorch_dvc_cnn_simple.py](pytorch_dvc_cnn_simple.py) shows a simple CNN image
 training that uses an HDF5 dataset. The original dataset can be found from
 <https://a3s.fi/mldata/dogs-vs-cats.tar>.
+
+The main trick is that the HDF5 file needs to be opened in the `__getitem__`
+method of the `Dataset`, as explained e.g. in [this blog post by Soumya
+Tripathy](https://blade6570.github.io/soumyatripathy/hdf5_blog.html#orgc76c0fe)
